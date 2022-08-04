@@ -5,12 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link ref="style" src="assets/style.css" />
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC&family=Raleway:wght@100&family=Square+Peg&family=Uchen&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header></header>
-    <section class="container"></section>
-    <footer></footer>
+    <header>
+        <h1 class="page-title">Taskinator</h1>
+        <p>Click the button below to add a new task!</p>
+        <button class="btn">Add Task</button>
+    </header>
+    
+    <main class="page-content">
+<section class="task-list-wrapper">
+    <h2 class="list-title">Task to do</h2>
+    <ul class="task-list">
+        <li class="task-item">A task is going to be added soon!</li>
+    </ul>
+</section>
+    </main>
+
+    <footer>  &copy;2020 by <span>Taskinator & Naferi</span></footer>
     <script src="assets/script.js"></script>
   </body>
 </html>

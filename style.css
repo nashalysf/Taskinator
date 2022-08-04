@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+body{
+    font-size: clamp(1rem, -1rem + 4vw, 2rem);
+    line-height: 1.4;
+    max-width: 70inch;
+    margin: 3rem auto;
+    padding: 2rem;
+}

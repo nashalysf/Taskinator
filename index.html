@@ -5,31 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Taskinator</title>
-    <link rel="stylesheet" href="./assets/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+SC&family=Raleway:wght@100&family=Square+Peg&family=Uchen&display=swap" rel="stylesheet">
-<link rel="shortcut icon" href="../assets/favicon.gif" type="image/x-icon">
+    <link rel="stylesheet" href="./assets/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC&family=Raleway:wght@100&family=Square+Peg&family=Uchen&display=swap" rel="stylesheet"/>
+    <link rel="shortcut icon" href="./assets/img/favicon.gif" type="image/x-icon"/>
   </head>
   <body>
     <header>
-        <h1 class="page-title">Taskinator</h1>
-        <p>Click the button below to add a new task!</p>
-        <button class="btn" id="save-task">Add Task</button>
+      <h1 class="page-title">Taskinator</h1>
+      <p>Click the button below to add a new task!</p>
+      <form id="task-form">
+        <div class="form-group">
+          <input type="text" name="task-name" placeholder="Enter task" class="task-input"/>
+        </div>
+        <div class="form-group">
+          <select name="task-type" class="select-dropdown">
+            <option value="BootCamp">BootCamp</option>
+            <option value="Personal">Personal</option>
+            <option value="University">University</option>
+          </select>
+        </div>
+        <div class="form-group">
+        <button type="submit" class="btn" id="save-task">Add Task</button>
+    </div>
+      </form>
     </header>
-    
+
     <main class="page-content">
-<section class="task-list-wrapper">
-    <h2 class="list-title">Task to do</h2>
-    <ul class="task-list">
-        <li class="task-item">A task is going to be added soon!</li>
-    </ul>
-</section>
+      <section class="task-list-wrapper">
+        <h2 class="list-title">Task to do</h2>
+        <ul class="task-list"  id="tasks-to-do"></ul>
+      </section>
     </main>
 
-    <footer>  &copy;2020 by <span>Taskinator & Naferi</span></footer>
+    <footer>&copy;2020 by <span>Taskinator & Naferi</span></footer>
     <script src="assets/script.js"></script>
   </body>
 </html>

@@ -1,3 +1,4 @@
+
 *{
     margin: 0;
     padding: 0;
@@ -112,14 +113,13 @@ body{
     border-radius: 12px;
     border: 2px solid var(--grey);
   }
-  
   .task-item {
     color: var(--primary);
-    padding: 15px 15px;
+    padding: 10px 15px;
     border: 2px solid var(--grey);
     background: var(--secondary);
     border-radius: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
   .task-name {
@@ -128,8 +128,9 @@ body{
   }
   
   .task-type {
-    color: var(--secondary);
-    font-size: 1.55rem;
+    color: var(--tertiary);
+    font-size: 2.5rem;
+    font-family: "Square Peg";
   }
   .task-actions {
     display: flex;
@@ -153,7 +154,7 @@ body{
     font-size: 2.2rem;
     border-radius: 12px;
     position: relative;
-    top: -3px;
+    top: -5px;
     box-shadow: 0 3px var(--grey);
   }
   
@@ -190,7 +191,7 @@ body{
     -webkit-appearance: none;
     appearance: none;
     background-color: #fff;
-    background-image: url("../images/select-arrow.svg");
+    background-image: url("../assets/img/select-arrow.svg");
     background-repeat: no-repeat, repeat;
     background-position: right 0.7em top 50%, 0 0;
     background-size: 0.65em auto, 100%;
@@ -229,6 +230,8 @@ body{
   @media screen and (max-width: 980px) {
     form .form-group {
       flex: 1 100%;
+      position: relative;
+      top: -15px;
     }
   
     form .form-group button {

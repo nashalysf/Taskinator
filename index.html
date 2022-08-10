@@ -10,8 +10,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+SC&family=Raleway:wght@100&family=Square+Peg&family=Uchen&display=swap" rel="stylesheet"/>
-    <link rel="shortcut icon" href="./assets/img/favicon.gif" type="image/x-icon"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+SC&family=Raleway:wght@100&family=Square+Peg&family=Uchen&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="shortcut icon"
+      href="./assets/img/favicon.gif"
+      type="image/x-icon"
+    />
   </head>
   <body>
     <header>
@@ -19,7 +26,12 @@
       <p>Click the button below to add a new task!</p>
       <form id="task-form">
         <div class="form-group">
-          <input type="text" name="task-name" placeholder="Enter task" class="task-input"/>
+          <input
+            type="text"
+            name="task-name"
+            placeholder="Enter task"
+            class="task-input"
+          />
         </div>
         <div class="form-group">
           <select name="task-type" class="select-dropdown">
@@ -30,15 +42,23 @@
           </select>
         </div>
         <div class="form-group">
-        <button type="submit" class="btn" id="save-task">Add Task</button>
-    </div>
+          <button type="submit" class="btn" id="save-task">Add Task</button>
+        </div>
       </form>
     </header>
 
-    <main class="page-content">
+    <main class="page-content" id="page-content">
       <section class="task-list-wrapper">
         <h2 class="list-title">Task to do</h2>
-        <ul class="task-list"  id="tasks-to-do"></ul>
+        <ul class="task-list" id="tasks-to-do"></ul>
+      </section>
+      <section class="task-list-wrapper">
+        <h2 class="list-title">Task in progress</h2>
+        <ul class="task-list" id="task-in-progress"></ul>
+      </section>
+      <section class="task-list-wrapper">
+        <h2 class="list-title">Task completed</h2>
+        <ul class="task-list" id="task-completed"></ul>
       </section>
     </main>
 

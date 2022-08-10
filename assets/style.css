@@ -103,6 +103,7 @@ body{
     color: var(--secondary);
     font-size: 2.6rem;
     font-family: "Cormorant SC";
+    text-align: center;
   }
   
   .task-list {
@@ -124,7 +125,7 @@ body{
   
   .task-name {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
   
   .task-type {
@@ -169,11 +170,12 @@ body{
   
   .edit-btn,
   .delete-btn {
-    font-size: 1.4rem;
-    padding: 5px 7px;
+    font-size: 1.5rem;
+    padding: 1px 3px;
     margin: 3px;
-    background: var(--secondary);
-    color: #fff;
+    background: var(--primary);
+    color: var(--grey);
+    font-family: 'Uchen';
   }
   
   .select-dropdown,

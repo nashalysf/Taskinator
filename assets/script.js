@@ -1,6 +1,7 @@
 // console.dir(document); show doc DOM elmnts
 //
 let taskIdCounter = 0;
+let tasks = [];
 //form var lets the btn and ENTER KEY to work
 let formEl = document.querySelector("#task-form");
 //selects div where list items will appear and creates unique id to each item
@@ -16,6 +17,12 @@ let taskFormHandler = function (event) {
 In this case, we're selecting the <input> element that has a name attribute set to a value of "task-name" */
   let taskNameInput = document.querySelector("input[name='task-name']").value;
   let taskTypeInput = document.querySelector("select[name='task-type']").value;
+  const taskDataObj = {
+    id: "",
+    name: taskNameInput,
+    type: taskTypeInput,
+    status: "to do"
+  };
   // dont accept empty values
   if (!taskTypeInput || !taskNameInput) {
     alert("Fill out the form!");
@@ -31,12 +38,10 @@ In this case, we're selecting the <input> element that has a name attribute set 
   }
   // no data attribute, so create object as normal and pass to createTaskEl function
   else {
-    let taskDataObj = {
-      name: taskNameInput,
-      type: taskTypeInput,
-    };
-
     createTaskEl(taskDataObj);
+    taskDataObj.id = taskIdCounter;
+    tasks.push(taskDataObj);
+    saveTasks();
   }
 };
 //
@@ -55,9 +60,13 @@ let createTaskEl = function (taskDataObj) {
   taskItemEl.appendChild(taskInfoEl);
   let taskActionsEl = createTaskActions(taskIdCounter);
   taskItemEl.appendChild(taskActionsEl);
+  taskDataObj.id = taskIdCounter;
+  tasks.push(taskDataObj);
+  taskIdCounter++;
   // add list item to list and generate unique id to next task
   tasksToDoEl.appendChild(taskItemEl);
-  taskIdCounter++;
+  saveTasks();
+  
 };
 let createTaskActions = function (taskId) {
   let actionContainerEl = document.createElement("div");
@@ -101,9 +110,14 @@ var completeEditTask = function(taskName, taskType, taskId) {
     // set new values
     taskSelected.querySelector("h3.task-name").textContent = taskName;
     taskSelected.querySelector("span.task-type").textContent = taskType;
-  
-    alert("Task Updated!");
-  
+    
+    for (i=0; i < tasks.length; i++){
+        if(tasks[i].id === parseInt(taskId)){
+            tasks[i].name = taskName;
+            tasks[i].type = taskType;
+        }
+    };
+  saveTasks();
     // remove data attribute from form
     formEl.removeAttribute("data-task-id");
     // update formEl button to go back to saying "Add Task" instead of "Edit Task"
@@ -125,6 +139,20 @@ let deleteTask = function (taskId) {
     ".task-item[data-task-id='" + taskId + "']"
   );
   taskSelected.remove();
+  // create new array to hold updated list of tasks
+var updatedTaskArr = [];
+
+// loop through current tasks
+for (var i = 0; i < tasks.length; i++) {
+  // if tasks[i].id doesn't match the value of taskId, let's keep that task and push it into the new array
+  if (tasks[i].id !== parseInt(taskId)) {
+    updatedTaskArr.push(tasks[i]);
+  }
+}
+// reassign tasks array to be the same as updatedTaskArr
+tasks = updatedTaskArr;
+console.log(tasks);
+saveTasks();
 };
 let editTask = function (taskId) {
   // get task list item element
@@ -160,7 +188,33 @@ let taskStatusChangeHandler = function (event) {
   }
   //it didn't create a copy of the task rather moved the task item from its original location in the DOM into the other <ul>
   // didn't create a second <li>. That would only be the case if we used document.createElement()
+  for (var i = 0; i < tasks.length; i++) {
+    if (tasks[i].id === parseInt(taskId)) {
+      tasks[i].status = statusValue;
+    }
+}
+saveTasks();
 };
+let saveTasks = function(){
+localStorage.setItem("tasks", JSON.stringify(tasks));
+};
+let loadTasks = function(){
+  let savedtasks =localStorage.getItem('tasks');
+  console.log(savedtasks);
+  if(!tasks){
+    tasks = [];
+    return false;
+  } 
+  //Converts tasks from the string format back into an array of objects.
+  savedtasks = JSON.parse(savedtasks);
+  for (var i = 0; i < savedtasks.length; i++) {
+    savedtasks[i] = taskIdCounter;
+    createTaskEl(savedtasks[i]);
+  }
+    console.log('Task found!');
+  }
+
 formEl.addEventListener("submit", taskFormHandler);
 pageContentEl.addEventListener("click", taskButtonHandler);
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
+loadTasks();

@@ -1,4 +1,3 @@
-
 *{
     margin: 0;
     padding: 0;
@@ -23,7 +22,7 @@ body{
     display: flex;
     min-height: 100vh;
     flex-direction: column;
-    font-family: sans-serif;
+    font-family: 'Square Peg', 'Cormorant SC', 'Raleway', sans-serif;
 }
   header {
     background: var(--secondary);
@@ -70,6 +69,7 @@ body{
     font-size: 1.5rem;
     padding: 20px;
     border-top: 5px solid var(--primary);
+    font-family: 'Cormorant SC';
     
   }
   footer span{
@@ -125,12 +125,13 @@ body{
   
   .task-name {
     margin: 0;
-    font-size: 2rem;
+    font-size: 3rem;
+    font-family: 'Cormorant SC';
   }
   
   .task-type {
     color: var(--tertiary);
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-family: "Square Peg";
   }
   .task-actions {
@@ -144,6 +145,17 @@ body{
   .task-actions button,
   .task-actions select {
     flex: 1;
+  }
+  .task-actions select{
+    background-color: var(--grey);
+    flex: .5;
+    font-family: 'Square Peg';
+    color: var(--primary);
+    font-size: 2rem;
+    text-align: center;
+  }
+  .task-actions select::after{
+    color: #ededed;
   }
   
   .btn {
@@ -193,7 +205,6 @@ body{
     -webkit-appearance: none;
     appearance: none;
     background-color: #fff;
-    background-image: url("../assets/img/select-arrow.svg");
     background-repeat: no-repeat, repeat;
     background-position: right 0.7em top 50%, 0 0;
     background-size: 0.65em auto, 100%;

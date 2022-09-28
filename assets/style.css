@@ -130,7 +130,7 @@ body{
   }
   
   .task-type {
-    color: var(--tertiary);
+    color: var(--primary);
     font-size: 2rem;
     font-family: "Square Peg";
   }
@@ -212,8 +212,10 @@ body{
   
   .select-status {
     font-size: 1.4rem;
-    padding: 4px 28px 4px 4px;
+    padding: 4px 6px;
     width: auto;
+    margin-left: 5px;
+    margin-bottom: 7px;
   }
   
   .select-dropdown::-ms-expand,

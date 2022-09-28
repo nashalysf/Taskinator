@@ -1,6 +1,6 @@
 // console.dir(document); show doc DOM elmnts
 //
-let taskIdCounter = 0;
+let taskIdCounter = 1;
 let tasks = [];
 //form var lets the btn and ENTER KEY to work
 let formEl = document.querySelector("#task-form");
@@ -18,14 +18,14 @@ In this case, we're selecting the <input> element that has a name attribute set 
   let taskNameInput = document.querySelector("input[name='task-name']").value;
   let taskTypeInput = document.querySelector("select[name='task-type']").value;
   const taskDataObj = {
-    id: "",
+    id: taskIdCounter,
     name: taskNameInput,
     type: taskTypeInput,
     status: "to do"
   };
   // dont accept empty values
   if (!taskTypeInput || !taskNameInput) {
-    alert("Fill out the form!");
+    alert("Please fill out the form!");
     return false;
   }
   //when added to list clear input for new task name
@@ -111,13 +111,14 @@ var completeEditTask = function(taskName, taskType, taskId) {
     taskSelected.querySelector("h3.task-name").textContent = taskName;
     taskSelected.querySelector("span.task-type").textContent = taskType;
     
-    for (i=0; i < tasks.length; i++){
+    for (i = 0; i < tasks.length; i++){
         if(tasks[i].id === parseInt(taskId)){
             tasks[i].name = taskName;
             tasks[i].type = taskType;
         }
+        saveTasks();
     };
-  saveTasks();
+  
     // remove data attribute from form
     formEl.removeAttribute("data-task-id");
     // update formEl button to go back to saying "Add Task" instead of "Edit Task"
@@ -139,18 +140,17 @@ let deleteTask = function (taskId) {
     ".task-item[data-task-id='" + taskId + "']"
   );
   taskSelected.remove();
-  // create new array to hold updated list of tasks
-var updatedTaskArr = [];
 
 // loop through current tasks
-for (var i = 0; i < tasks.length; i++) {
+for (var i = 1; i < tasks.length; i++) {
   // if tasks[i].id doesn't match the value of taskId, let's keep that task and push it into the new array
   if (tasks[i].id !== parseInt(taskId)) {
-    updatedTaskArr.push(tasks[i]);
+    tasks.shift(tasks[i]);
+  } else{
+    tasks.pop(tasks[i]);
   }
 }
 // reassign tasks array to be the same as updatedTaskArr
-tasks = updatedTaskArr;
 console.log(tasks);
 saveTasks();
 };
@@ -188,7 +188,7 @@ let taskStatusChangeHandler = function (event) {
   }
   //it didn't create a copy of the task rather moved the task item from its original location in the DOM into the other <ul>
   // didn't create a second <li>. That would only be the case if we used document.createElement()
-  for (var i = 0; i < tasks.length; i++) {
+  for (var i = 1; i < tasks.length; i++) {
     if (tasks[i].id === parseInt(taskId)) {
       tasks[i].status = statusValue;
     }
@@ -196,21 +196,20 @@ let taskStatusChangeHandler = function (event) {
 saveTasks();
 };
 let saveTasks = function(){
-localStorage.setItem("tasks", JSON.stringify(tasks));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 let loadTasks = function(){
-  let savedtasks =localStorage.getItem('tasks');
+  let savedtasks = localStorage.getItem("tasks");
   console.log(savedtasks);
-  if(!tasks){
-    tasks = [];
+  if(!savedtasks){
     return false;
   } 
   //Converts tasks from the string format back into an array of objects.
   savedtasks = JSON.parse(savedtasks);
-  for (var i = 0; i < savedtasks.length; i++) {
-    savedtasks[i] = taskIdCounter;
+  for (var i = 1; i < savedtasks.length; i++) {
     createTaskEl(savedtasks[i]);
   }
+    savedtasks[i] = taskIdCounter;
     console.log('Task found!');
   }
 
